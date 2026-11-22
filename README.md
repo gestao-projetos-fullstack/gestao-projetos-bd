@@ -6,7 +6,7 @@ Scripts SQL do banco de dados do projeto do curso **Do Zero ao Full Stack**, usa
 
 | Arquivo      | Descrição                                                        |
 |--------------|------------------------------------------------------------------|
-| `schema.sql` | Cria o banco `gestao_projetos`, as tabelas, chaves, restrições e índices |
+| `gestao-projetos.sql` | Cria o banco `gestao_projetos`, as tabelas, chaves, restrições e índices |
 | `README.md`  | Este documento                                                   |
 
 ## Requisitos
@@ -20,18 +20,18 @@ Scripts SQL do banco de dados do projeto do curso **Do Zero ao Full Stack**, usa
 ### Opção 1: linha de comando
 
 ```bash
-mysql -u root -p < schema.sql
+mysql -u root -p < gestao-projetos.sql
 ```
 
 ### Opção 2: MySQL Workbench
 
-1. Abra o arquivo `schema.sql`.
+1. Abra o arquivo `gestao-projetos.sql`.
 2. Clique em **Execute** (ícone de raio) ou pressione `Ctrl+Shift+Enter`.
 
 ### Opção 3: dentro do cliente MySQL
 
 ```sql
-SOURCE /caminho/para/schema.sql;
+SOURCE /caminho/para/gestao-projetos.sql;
 ```
 
 > **Atenção:** o script começa removendo as tabelas existentes (`DROP TABLE IF EXISTS`). Executá-lo novamente **apaga todos os dados**. Use apenas em desenvolvimento ou quando quiser recriar o banco do zero.
@@ -92,7 +92,7 @@ spring.datasource.url=jdbc:mysql://localhost:3306/gestao_projetos?useSSL=false&s
 spring.datasource.username=seu_usuario
 spring.datasource.password=sua_senha
 
-# O banco é criado pelo schema.sql; o Hibernate apenas valida o mapeamento
+# O banco é criado pelo gestao-projetos.sql; o Hibernate apenas valida o mapeamento
 spring.jpa.hibernate.ddl-auto=validate
 ```
 
@@ -106,4 +106,4 @@ Ao mapear as entidades:
 - O banco usa `utf8mb4` com collation `utf8mb4_unicode_ci`, o que suporta acentos e emojis.
 - Os campos de data e hora usam `DATETIME` em vez de `TIMESTAMP`, para evitar conversões de fuso horário e o limite de 2038.
 - As chaves estrangeiras geram índices automaticamente no MySQL. Os índices explícitos cobrem os filtros por `status` e as consultas por usuário nas tabelas associativas.
-- Para alterar o schema no futuro, prefira criar novos scripts de migração (por exemplo, uma pasta `migrations/`) em vez de editar o `schema.sql` já aplicado.
+- Para alterar o schema no futuro, prefira criar novos scripts de migração (por exemplo, uma pasta `migrations/`) em vez de editar o `gestao-projetos.sql` já aplicado.
